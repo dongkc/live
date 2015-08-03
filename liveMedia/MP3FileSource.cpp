@@ -125,7 +125,7 @@ void MP3FileSource::doGetNextFrame() {
   afterGetting(this);
 #else
   nextTask() = envir().taskScheduler().scheduleDelayedTask(0,
-				(TaskFunc*)afterGetting, this);
+                                (TaskFunc*)afterGetting, this);
 #endif
 }
 
@@ -142,8 +142,8 @@ Boolean MP3FileSource::doGetNextFrame1() {
   if (!fStreamState->readFrame(fTo, fMaxSize, fFrameSize, fDurationInMicroseconds)) {
     char tmp[200];
     sprintf(tmp,
-	    "Insufficient buffer size %d for reading MPEG audio frame (needed %d)\n",
-	    fMaxSize, fFrameSize);
+            "Insufficient buffer size %d for reading MPEG audio frame (needed %d)\n",
+            fMaxSize, fFrameSize);
     envir().setResultMsg(tmp);
     fFrameSize = fMaxSize;
     return False;

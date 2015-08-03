@@ -235,7 +235,7 @@ void WAVAudioFileSource::doGetNextFrame() {
   if (!fHaveStartedReading) {
     // Await readable data from the file:
     envir().taskScheduler().turnOnBackgroundReadHandling(fileno(fFid),
-							 (TaskScheduler::BackgroundHandlerProc*)&fileReadableHandler, this);
+                                                         (TaskScheduler::BackgroundHandlerProc*)&fileReadableHandler, this);
     fHaveStartedReading = True;
   }
 #endif

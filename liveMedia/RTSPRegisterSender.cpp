@@ -25,12 +25,12 @@ RTSPRegisterSender* RTSPRegisterSender
 ::createNew(UsageEnvironment& env,
             char const* remoteClientNameOrAddress, portNumBits remoteClientPortNum, char const* rtspURLToRegister,
             RTSPClient::responseHandler* rtspResponseHandler, Authenticator* authenticator,
-	    Boolean requestStreamingViaTCP, char const* proxyURLSuffix, Boolean reuseConnection,
+            Boolean requestStreamingViaTCP, char const* proxyURLSuffix, Boolean reuseConnection,
             int verbosityLevel, char const* applicationName) {
   return new RTSPRegisterSender(env, remoteClientNameOrAddress, remoteClientPortNum, rtspURLToRegister,
-				rtspResponseHandler, authenticator,
-				requestStreamingViaTCP, proxyURLSuffix, reuseConnection,
-				verbosityLevel, applicationName);
+                                rtspResponseHandler, authenticator,
+                                requestStreamingViaTCP, proxyURLSuffix, reuseConnection,
+                                verbosityLevel, applicationName);
 }
 
 void RTSPRegisterSender::grabConnection(int& sock, struct sockaddr_in& remoteAddress) {
@@ -42,10 +42,10 @@ void RTSPRegisterSender::grabConnection(int& sock, struct sockaddr_in& remoteAdd
 
 RTSPRegisterSender
 ::RTSPRegisterSender(UsageEnvironment& env,
-		     char const* remoteClientNameOrAddress, portNumBits remoteClientPortNum, char const* rtspURLToRegister,
-		     RTSPClient::responseHandler* rtspResponseHandler, Authenticator* authenticator,
-		     Boolean requestStreamingViaTCP, char const* proxyURLSuffix, Boolean reuseConnection,
-		     int verbosityLevel, char const* applicationName)
+                     char const* remoteClientNameOrAddress, portNumBits remoteClientPortNum, char const* rtspURLToRegister,
+                     RTSPClient::responseHandler* rtspResponseHandler, Authenticator* authenticator,
+                     Boolean requestStreamingViaTCP, char const* proxyURLSuffix, Boolean reuseConnection,
+                     int verbosityLevel, char const* applicationName)
   : RTSPClient(env, NULL, verbosityLevel, applicationName, 0, -1),
     fRemoteClientPortNum(remoteClientPortNum) {
   // Set up a connection to the remote client.  To do this, we create a fake "rtsp://" URL for it:
@@ -59,16 +59,16 @@ RTSPRegisterSender
   // Send the "REGISTER" request:
   if (authenticator != NULL) fCurrentAuthenticator = *authenticator;
   (void)sendRequest(new RequestRecord_REGISTER(++fCSeq, rtspResponseHandler,
-					       rtspURLToRegister, reuseConnection, requestStreamingViaTCP, proxyURLSuffix));
+                                               rtspURLToRegister, reuseConnection, requestStreamingViaTCP, proxyURLSuffix));
 }
 
 RTSPRegisterSender::~RTSPRegisterSender() {
 }
 
 Boolean RTSPRegisterSender::setRequestFields(RequestRecord* request,
-					     char*& cmdURL, Boolean& cmdURLWasAllocated,
-					     char const*& protocolStr,
-					     char*& extraHeaders, Boolean& extraHeadersWereAllocated) {
+                                             char*& cmdURL, Boolean& cmdURLWasAllocated,
+                                             char const*& protocolStr,
+                                             char*& extraHeaders, Boolean& extraHeadersWereAllocated) {
   if (strcmp(request->commandName(), "REGISTER") == 0) {
     RequestRecord_REGISTER* request_REGISTER = (RequestRecord_REGISTER*) request;
 
@@ -84,7 +84,7 @@ Boolean RTSPRegisterSender::setRequestFields(RequestRecord* request,
     } else {
       char const* proxyURLSuffixParameterFmt = "; proxy_url_suffix=%s";
       unsigned proxyURLSuffixParameterSize = strlen(proxyURLSuffixParameterFmt)
-	+ strlen(request_REGISTER->proxyURLSuffix());
+        + strlen(request_REGISTER->proxyURLSuffix());
       proxyURLSuffixParameterStr = new char[proxyURLSuffixParameterSize];
       sprintf(proxyURLSuffixParameterStr, proxyURLSuffixParameterFmt, request_REGISTER->proxyURLSuffix());
     }
@@ -93,9 +93,9 @@ Boolean RTSPRegisterSender::setRequestFields(RequestRecord* request,
     unsigned transportHeaderSize = strlen(transportHeaderFmt) + 100/*conservative*/ + strlen(proxyURLSuffixParameterStr);
     char* transportHeaderStr = new char[transportHeaderSize];
     sprintf(transportHeaderStr, transportHeaderFmt,
-	    request_REGISTER->reuseConnection() ? "reuse_connection; " : "",
-	    request_REGISTER->requestStreamingViaTCP() ? "interleaved" : "udp",
-	    proxyURLSuffixParameterStr);
+            request_REGISTER->reuseConnection() ? "reuse_connection; " : "",
+            request_REGISTER->requestStreamingViaTCP() ? "interleaved" : "udp",
+            proxyURLSuffixParameterStr);
     delete[] proxyURLSuffixParameterStr;
 
     extraHeaders = transportHeaderStr;
@@ -109,7 +109,7 @@ Boolean RTSPRegisterSender::setRequestFields(RequestRecord* request,
 
 RTSPRegisterSender::RequestRecord_REGISTER
 ::RequestRecord_REGISTER(unsigned cseq, RTSPClient::responseHandler* rtspResponseHandler, char const* rtspURLToRegister,
-			 Boolean reuseConnection, Boolean requestStreamingViaTCP, char const* proxyURLSuffix)
+                         Boolean reuseConnection, Boolean requestStreamingViaTCP, char const* proxyURLSuffix)
   : RTSPClient::RequestRecord(cseq, "REGISTER", rtspResponseHandler),
     fRTSPURLToRegister(strDup(rtspURLToRegister)),
     fReuseConnection(reuseConnection), fRequestStreamingViaTCP(requestStreamingViaTCP), fProxyURLSuffix(strDup(proxyURLSuffix)) {
