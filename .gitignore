@@ -1,0 +1,8 @@
+config*
+cscope*
+Makefile*
+COPYING
+README
+fix-makefile
+gen*
+win32*
