@@ -36,7 +36,7 @@ class DeviceParameters {
 class DeviceSource: public FramedSource {
 public:
   static DeviceSource* createNew(UsageEnvironment& env,
-				 DeviceParameters params);
+                                 DeviceParameters params);
 
 public:
   static EventTriggerId eventTriggerId;

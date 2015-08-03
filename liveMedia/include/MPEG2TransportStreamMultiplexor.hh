@@ -40,7 +40,7 @@ protected:
       // implemented by subclasses
 
   void handleNewBuffer(unsigned char* buffer, unsigned bufferSize,
-		       int mpegVersion, MPEG1or2Demux::SCR scr, int16_t PID = -1);
+                       int mpegVersion, MPEG1or2Demux::SCR scr, int16_t PID = -1);
       // called by "awaitNewBuffer()"
       // Note: For MPEG-4 video, set "mpegVersion" to 4; for H.264 video, set "mpegVersion" to 5. 
       // The buffer is assumed to be a PES packet, with a proper PES header.
@@ -53,7 +53,7 @@ private:
 
 private:
   void deliverDataToClient(u_int8_t pid, unsigned char* buffer, unsigned bufferSize,
-			   unsigned& startPositionInBuffer);
+                           unsigned& startPositionInBuffer);
 
   void deliverPATPacket();
   void deliverPMTPacket(Boolean hasChanged);

@@ -86,7 +86,7 @@ void GenericMediaServer::deleteServerMediaSession(char const* streamName) {
 
 GenericMediaServer
 ::GenericMediaServer(UsageEnvironment& env, int ourSocket, Port ourPort,
-		     unsigned reclamationSeconds)
+                     unsigned reclamationSeconds)
   : Medium(env),
     fServerSocket(ourSocket), fServerPort(ourPort), fReclamationSeconds(reclamationSeconds),
     fServerMediaSessions(HashTable::create(STRING_HASH_KEYS)),
@@ -270,7 +270,7 @@ GenericMediaServer::ClientSession::~ClientSession() {
   if (fOurServerMediaSession != NULL) {
     fOurServerMediaSession->decrementReferenceCount();
     if (fOurServerMediaSession->referenceCount() == 0
-	&& fOurServerMediaSession->deleteWhenUnreferenced()) {
+        && fOurServerMediaSession->deleteWhenUnreferenced()) {
       fOurServer.removeServerMediaSession(fOurServerMediaSession);
       fOurServerMediaSession = NULL;
     }
@@ -282,12 +282,12 @@ void GenericMediaServer::ClientSession::noteLiveness() {
   char const* streamName
     = (fOurServerMediaSession == NULL) ? "???" : fOurServerMediaSession->streamName();
   fprintf(stderr, "Client session (id \"%08X\", stream name \"%s\"): Liveness indication\n",
-	  fOurSessionId, streamName);
+          fOurSessionId, streamName);
 #endif
   if (fOurServer.fReclamationSeconds > 0) {
     envir().taskScheduler().rescheduleDelayedTask(fLivenessCheckTask,
-						  fOurServer.fReclamationSeconds*1000000,
-						  (TaskFunc*)livenessTimeoutTask, this);
+                                                  fOurServer.fReclamationSeconds*1000000,
+                                                  (TaskFunc*)livenessTimeoutTask, this);
   }
 }
 
@@ -301,7 +301,7 @@ void GenericMediaServer::ClientSession::livenessTimeoutTask(ClientSession* clien
   char const* streamName
     = (clientSession->fOurServerMediaSession == NULL) ? "???" : clientSession->fOurServerMediaSession->streamName();
   fprintf(stderr, "Client session (id \"%08X\", stream name \"%s\") has timed out (due to inactivity)\n",
-	  clientSession->fOurSessionId, streamName);
+          clientSession->fOurSessionId, streamName);
 #endif
   delete clientSession;
 }

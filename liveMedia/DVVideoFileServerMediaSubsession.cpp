@@ -62,8 +62,8 @@ FramedSource* DVVideoFileServerMediaSubsession
 }
 
 RTPSink* DVVideoFileServerMediaSubsession::createNewRTPSink(Groupsock* rtpGroupsock,
-							    unsigned char rtpPayloadTypeIfDynamic,
-							    FramedSource* /*inputSource*/) {
+                                                            unsigned char rtpPayloadTypeIfDynamic,
+                                                            FramedSource* /*inputSource*/) {
   return DVVideoRTPSink::createNew(envir(), rtpGroupsock, rtpPayloadTypeIfDynamic);
 }
 

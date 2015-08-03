@@ -29,19 +29,19 @@ class RTSPRegisterSender: public RTSPClient {
 public:
   static RTSPRegisterSender*
   createNew(UsageEnvironment& env,
-	    char const* remoteClientNameOrAddress, portNumBits remoteClientPortNum, char const* rtspURLToRegister,
-	    RTSPClient::responseHandler* rtspResponseHandler, Authenticator* authenticator = NULL,
-	    Boolean requestStreamingViaTCP = False, char const* proxyURLSuffix = NULL, Boolean reuseConnection = False,
-	    int verbosityLevel = 0, char const* applicationName = NULL);
+            char const* remoteClientNameOrAddress, portNumBits remoteClientPortNum, char const* rtspURLToRegister,
+            RTSPClient::responseHandler* rtspResponseHandler, Authenticator* authenticator = NULL,
+            Boolean requestStreamingViaTCP = False, char const* proxyURLSuffix = NULL, Boolean reuseConnection = False,
+            int verbosityLevel = 0, char const* applicationName = NULL);
 
   void grabConnection(int& sock, struct sockaddr_in& remoteAddress); // so that the socket doesn't get closed when we're deleted
 
 protected:
   RTSPRegisterSender(UsageEnvironment& env,
-		     char const* remoteClientNameOrAddress, portNumBits remoteClientPortNum, char const* rtspURLToRegister,
-		     RTSPClient::responseHandler* rtspResponseHandler, Authenticator* authenticator,
-		     Boolean requestStreamingViaTCP, char const* proxyURLSuffix, Boolean reuseConnection,
-		     int verbosityLevel, char const* applicationName);
+                     char const* remoteClientNameOrAddress, portNumBits remoteClientPortNum, char const* rtspURLToRegister,
+                     RTSPClient::responseHandler* rtspResponseHandler, Authenticator* authenticator,
+                     Boolean requestStreamingViaTCP, char const* proxyURLSuffix, Boolean reuseConnection,
+                     int verbosityLevel, char const* applicationName);
     // called only by "createNew()"
   virtual ~RTSPRegisterSender();
 
@@ -56,7 +56,7 @@ public: // Some compilers complain if this is "protected:"
   class RequestRecord_REGISTER: public RTSPClient::RequestRecord {
   public:
     RequestRecord_REGISTER(unsigned cseq, RTSPClient::responseHandler* rtspResponseHandler, char const* rtspURLToRegister,
-			   Boolean reuseConnection, Boolean requestStreamingViaTCP, char const* proxyURLSuffix);
+                           Boolean reuseConnection, Boolean requestStreamingViaTCP, char const* proxyURLSuffix);
     virtual ~RequestRecord_REGISTER();
 
     char const* rtspURLToRegister() const { return fRTSPURLToRegister; }

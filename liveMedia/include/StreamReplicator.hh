@@ -64,7 +64,7 @@ private:
                                 struct timeval presentationTime,
                                 unsigned durationInMicroseconds);
   void afterGettingFrame(unsigned frameSize, unsigned numTruncatedBytes,
-			 struct timeval presentationTime, unsigned durationInMicroseconds);
+                         struct timeval presentationTime, unsigned durationInMicroseconds);
 
   static void onSourceClosure(void* clientData);
   void onSourceClosure();

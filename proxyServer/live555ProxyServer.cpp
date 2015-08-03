@@ -95,12 +95,12 @@ int main(int argc, char** argv) {
     case 'T': {
       // stream RTP and RTCP over a HTTP connection
       if (argc > 3 && argv[2][0] != '-') {
-	// The next argument is the HTTP server port number:                                                                       
-	if (sscanf(argv[2], "%hu", &tunnelOverHTTPPortNum) == 1
-	    && tunnelOverHTTPPortNum > 0) {
-	  ++argv; --argc;
-	  break;
-	}
+        // The next argument is the HTTP server port number:                                                                       
+        if (sscanf(argv[2], "%hu", &tunnelOverHTTPPortNum) == 1
+            && tunnelOverHTTPPortNum > 0) {
+          ++argv; --argc;
+          break;
+        }
       }
 
       // If we get here, the option was specified incorrectly:
@@ -192,8 +192,8 @@ int main(int argc, char** argv) {
     }
     ServerMediaSession* sms
       = ProxyServerMediaSession::createNew(*env, rtspServer,
-					   proxiedStreamURL, streamName,
-					   username, password, tunnelOverHTTPPortNum, verbosityLevel);
+                                           proxiedStreamURL, streamName,
+                                           username, password, tunnelOverHTTPPortNum, verbosityLevel);
     rtspServer->addServerMediaSession(sms);
 
     char* proxyStreamURL = rtspServer->rtspURL(sms);

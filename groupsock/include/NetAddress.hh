@@ -41,7 +41,7 @@ typedef u_int32_t netAddressBits;
 class NetAddress {
 public:
   NetAddress(u_int8_t const* data,
-	     unsigned length = 4 /* default: 32 bits */);
+             unsigned length = 4 /* default: 32 bits */);
   NetAddress(unsigned length = 4); // sets address data to all-zeros
   NetAddress(NetAddress const& orig);
   NetAddress& operator=(NetAddress const& rightSide);

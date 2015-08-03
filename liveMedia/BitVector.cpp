@@ -21,14 +21,14 @@ along with this library; if not, write to the Free Software Foundation, Inc.,
 #include "BitVector.hh"
 
 BitVector::BitVector(unsigned char* baseBytePtr,
-		     unsigned baseBitOffset,
-		     unsigned totNumBits) {
+                     unsigned baseBitOffset,
+                     unsigned totNumBits) {
   setup(baseBytePtr, baseBitOffset, totNumBits);
 }
 
 void BitVector::setup(unsigned char* baseBytePtr,
-		      unsigned baseBitOffset,
-		      unsigned totNumBits) {
+                      unsigned baseBitOffset,
+                      unsigned totNumBits) {
   fBaseBytePtr = baseBytePtr;
   fBaseBitOffset = baseBitOffset;
   fTotNumBits = totNumBits;
@@ -60,8 +60,8 @@ void BitVector::putBits(unsigned from, unsigned numBits) {
   tmpBuf[3] = (unsigned char)from;
 
   shiftBits(fBaseBytePtr, fBaseBitOffset + fCurBitIndex, /* to */
-	    tmpBuf, MAX_LENGTH - numBits, /* from */
-	    numBits - overflowingBits /* num bits */);
+            tmpBuf, MAX_LENGTH - numBits, /* from */
+            numBits - overflowingBits /* num bits */);
   fCurBitIndex += numBits - overflowingBits;
 }
 
@@ -95,8 +95,8 @@ unsigned BitVector::getBits(unsigned numBits) {
   }
 
   shiftBits(tmpBuf, 0, /* to */
-	    fBaseBytePtr, fBaseBitOffset + fCurBitIndex, /* from */
-	    numBits - overflowingBits /* num bits */);
+            fBaseBytePtr, fBaseBitOffset + fCurBitIndex, /* from */
+            numBits - overflowingBits /* num bits */);
   fCurBitIndex += numBits - overflowingBits;
 
   unsigned result
@@ -141,8 +141,8 @@ unsigned BitVector::get_expGolomb() {
 
 
 void shiftBits(unsigned char* toBasePtr, unsigned toBitOffset,
-	       unsigned char const* fromBasePtr, unsigned fromBitOffset,
-	       unsigned numBits) {
+               unsigned char const* fromBasePtr, unsigned fromBitOffset,
+               unsigned numBits) {
   if (numBits == 0) return;
 
   /* Note that from and to may overlap, if from>to */
