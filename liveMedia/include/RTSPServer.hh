@@ -328,6 +328,6 @@ private:
   unsigned fRegisteredProxyCounter;
   char* fAllowedCommandNames;
   UserAuthenticationDatabase* fAuthDBForREGISTER;
-}; 
+};
 
 #endif
