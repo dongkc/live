@@ -44,7 +44,7 @@ static void decodeURL(char* url) {
       *url++ = *cursor++;
     }
   }
-  
+
   *url = '\0';
 }
 

@@ -130,7 +130,7 @@ protected:
 
 protected:
   friend class ClientConnection;
-  friend class ClientSession;        
+  friend class ClientSession;
   int fServerSocket;
   Port fServerPort;
   unsigned fReclamationSeconds;
