@@ -127,7 +127,7 @@ void OnDemandServerMediaSubsession
         NoReuse dummy(envir()); // ensures that we skip over ports that are already in use
         for (serverPortNum = fInitialPortNum; ; ++serverPortNum) {
           struct in_addr dummyAddr; dummyAddr.s_addr = 0;
-          
+
           serverRTPPort = serverPortNum;
           rtpGroupsock = createGroupsock(dummyAddr, serverRTPPort);
           if (rtpGroupsock->socketNum() >= 0) break; // success
