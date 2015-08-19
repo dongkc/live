@@ -1,6 +1,6 @@
 config*
 cscope*
-Makefile*
+Makefile
 COPYING
 README
 fix-makefile
